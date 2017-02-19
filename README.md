@@ -4,7 +4,7 @@ Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a tra
 
 ## Contenidos
 * [Registro Premium](#premium)
-* [Material de actividades](#actividades)
+* [Material de actividades](https://github.com/gpul-labs/labs2017/wiki/Material-de-actividades)
 * [Comunidad (Preguntas y respuestas)](#comunidad)
 * [Código de conducta](#codigo)
 * [Estructura de las actividades](#estructura)
@@ -21,7 +21,7 @@ Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a tra
 ## <a name="comunidad" href="https://forums.gpul.org/">Comunidad (Preguntas y respuestas)</a>
 Es posible que te surjan dudas sobre código o simplemente te gustaría mantener contacto con la gente digitalmente, es por eso por lo que hemos creado un lugar de preguntas y respuestas al estilo *Stack Overflow* para los GPUL Labs ;)
 
-## <a name="codigo" href="https://github.com/gpul-labs/roadmap/blob/master/docs/codigodeconducta.md">Código de conducta</a>
+## <a name="codigo" href="https://github.com/gpul-labs/labs2017/blob/master/docs/codigodeconducta.md">Código de conducta</a>
 Cómo todo buen evento, en los **Labs** también tenemos un código de conducta que todos nuestros asistentes deben seguir, si tienes un minuto puedes echarle un ojo en el link.
 
 ## <a name="estructura">Estructura de las actividades</a>
@@ -32,12 +32,12 @@ Por supuesto nuestro ponentes tienen libertad total, igual muchos intercalarán 
 ## <a name="colaborar">Cómo colaborar</a>
 Si quieres echar una mano echa un ojo a las [Issues](https://waffle.io/gpul-labs/labs2017) del proyecto!
 
-Para más información pásate por la [Wiki](https://github.com/gpul-labs/roadmap/wiki) y allí te contamos cómo nos puedes ayudar ;)
+Para más información pásate por la [Wiki](https://github.com/gpul-labs/labs2017/wiki) y allí te contamos cómo nos puedes ayudar ;)
 
 Puedes:
-- [Organizar unha charla](https://github.com/gpul-labs/roadmap/wiki/Organizar-una-charla)
-- [Venir como ponente](https://github.com/gpul-labs/roadmap/wiki/Venir-como-ponente)
-- [Colaborar como sponsor](https://github.com/gpul-labs/roadmap/wiki/Ser-sponsor)
+- [Organizar unha charla](https://github.com/gpul-labs/labs2017/wiki/Organizar-una-charla)
+- [Venir como ponente](https://github.com/gpul-labs/labs2017/wiki/Venir-como-ponente)
+- [Colaborar como sponsor](https://github.com/gpul-labs/labs2017/wiki/Ser-sponsor)
 
 Y por supuesto estamos abiertos a todo tipo de sugerencias y colaboraciones!
 
