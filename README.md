@@ -3,20 +3,11 @@
 Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a trabajar en el mundo real con tecnologías modernas y totalmente software libre!
 
 ## Contenidos
-* [Registro Premium](#premium)
+* [Cómo colaborar](#colaborar)
 * [Material de actividades](https://github.com/gpul-labs/labs2017/wiki/Material-de-actividades)
 * [Comunidad (Preguntas y respuestas)](#comunidad)
 * [Código de conducta](#codigo)
 * [Estructura de las actividades](#estructura)
-* [Cómo colaborar](#colaborar)
-
-## <a name="premium">Registro Premium</a>
-- Sitio reservado permanente.
-- Diploma de asistencia y seguimiento del trabajo.
-- Camiseta GPUL Labs.
-- Pegatinas de proyectos de software libre a escoger.
-
-[![Premium badge](https://img.shields.io/badge/-Ser%20Premium-blue.svg?link=https://img.shields.io/badge/-Ser%20Premium-blue.svg)](https://www.gpul.org/indico/conferenceDisplay.py?confId=27)
 
 ## <a name="colaborar">Cómo colaborar</a>
 Si quieres echar una mano echa un ojo a las [Issues](https://waffle.io/gpul-labs/labs2017) del proyecto!
