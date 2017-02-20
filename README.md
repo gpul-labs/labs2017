@@ -8,7 +8,6 @@ Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a tra
 * [Material de actividades](https://github.com/gpul-labs/labs2017/wiki/Material-de-actividades)
 * [Comunidad (Preguntas y respuestas)](#comunidad)
 * [Código de conducta](#codigo)
-* [Estructura de las actividades](#estructura)
 
 ## <a name="charla">Quiero dar una charla</a>
 Si piensas en dar una charla estamos encantados de que te unas a nosotros y te echaremos una mano en lo que necesites ;)
@@ -18,6 +17,26 @@ Primero abre una [issue](https://waffle.io/gpul-labs/labs2017) en este proyecto 
 Aquí tienes una pequeña guía con un par de sugerencias que nos encantaría que siguieses todo lo que puedas.
 
 [Venir como ponente](https://github.com/gpul-labs/labs2017/wiki/Venir-como-ponente)
+
+#### Algunos temas sugeridos
+
+- Arduino y cosas de IoT
+- Git y GitLab
+- Python, Dart, Ruby u otro lenguaje de esos que no se dan en la FIC
+- Backend – APIS y/o algún framework relacionado
+- Frontend - JS, React, Angular, Vue.js
+- Tensorflow, OpenCV o algo relacionado con la IA
+- Testing y/o integración continua
+- Android
+- Docker y virtualización
+
+También molan temas un poco menos técnicos
+- ¿Cómo y por qué es importante liberar software? Concursos, curriculum, etc
+- Privacidad y software libre
+- Modelos de negocio con software, hardware o cultura libre en general
+- Agile & friends
+
+**Pero por favor, no te cortes y mándanos tus sugerencias, estamos abiertos a nuevas y geniales propuestas :)**
 
 ## <a name="colaborar">Quiero echar una mano</a>
 Si quieres echar una mano, revisa las [Issues](https://waffle.io/gpul-labs/labs2017) del proyecto, seguro que encuentras algo con lo que empezar a ayudar y no te olvides de pedirnos que te metamos en el grupo de Telegram de voluntarios!
