@@ -4,7 +4,7 @@ Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a tra
 
 ## Contenidos
 * [Quiero dar una charla](#charla)
-* [Cómo colaborar](#colaborar)
+* [Quiero echar una mano](#colaborar)
 * [Material de actividades](https://github.com/gpul-labs/labs2017/wiki/Material-de-actividades)
 * [Comunidad (Preguntas y respuestas)](#comunidad)
 * [Código de conducta](#codigo)
@@ -16,6 +16,7 @@ Si piensas en dar una charla estamos encantados de que te unas a nosotros y te e
 Primero abre una [issue](https://waffle.io/gpul-labs/labs2017) en este proyecto con un título que empiece con [Propuesta de actividad] y haz un pequeño resumen de la temática sobre la qué quieres hablar, recuerda que tiene que ser libre!
 
 Aquí tienes una pequeña guía con un par de sugerencias que nos encantaría que siguieses todo lo que puedas.
+
 [Venir como ponente](https://github.com/gpul-labs/labs2017/wiki/Venir-como-ponente)
 
 ## <a name="colaborar">Quiero echar una mano</a>
