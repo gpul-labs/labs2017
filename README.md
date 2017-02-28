@@ -14,10 +14,6 @@ Si piensas en dar una charla estamos encantados de que te unas a nosotros y te e
 
 Primero abre una [issue](https://waffle.io/gpul-labs/labs2017) en este proyecto con un título que empiece con [Propuesta de actividad] y haz un pequeño resumen de la temática sobre la qué quieres hablar, recuerda que tiene que ser libre!
 
-Aquí tienes una pequeña guía con un par de sugerencias que nos encantaría que siguieses todo lo que puedas.
-
-[Venir como ponente](https://github.com/gpul-labs/labs2017/wiki/Venir-como-ponente)
-
 #### Algunos temas sugeridos
 
 - Arduino y cosas de IoT
@@ -37,6 +33,11 @@ También molan temas un poco menos técnicos
 - Agile & friends
 
 **Pero por favor, no te cortes y mándanos tus sugerencias, estamos abiertos a nuevas y geniales propuestas :)**
+
+Como el objetivo de los Labs es apoyar y crear comunidad alrededor del software libre hemos preparado un par de detallitos que sería genial que pudieses también compartir si te apuntas a participar, muchas gracias de antemano ;)
+
+[Venir como ponente](https://github.com/gpul-labs/labs2017/wiki/Venir-como-ponente)
+
 
 ## <a name="colaborar">Quiero echar una mano</a>
 Si quieres echar una mano, revisa las [Issues](https://waffle.io/gpul-labs/labs2017) del proyecto, seguro que encuentras algo con lo que empezar a ayudar y no te olvides de pedirnos que te metamos en el grupo de Telegram de voluntarios!
