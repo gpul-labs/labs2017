@@ -5,7 +5,8 @@ Bienvenidos a los **GPUL Labs**, el evento en el que aprenderás de verdad a tra
 ## Contenidos
 * [Quiero dar una charla](#charla)
 * [Quiero echar una mano](#colaborar)
-* [Material de actividades](https://github.com/gpul-labs/labs2017/wiki/Material-de-actividades)
+* [Videos de actividades](https://archive.org/details/@gpul)
+* [Material de actividades](https://github.com/gpul-labs/labs2017/tree/master/documentacion-charlas/)
 * [Comunidad (Preguntas y respuestas)](#comunidad)
 * [Código de conducta](#codigo)
 
