@@ -57,4 +57,7 @@ Es posible que te surjan dudas sobre código o simplemente te gustaría mantener
 ## <a name="codigo" href="https://github.com/gpul-labs/labs2017/blob/master/docs/codigodeconducta.md">Código de conducta</a>
 Cómo todo buen evento, en los **Labs** también tenemos un código de conducta que todos nuestros asistentes deben seguir, si tienes un minuto puedes echarle un ojo en el link.
 
+## Licencia
+Este proyecto y todos los documentos que en él se encuentran tienen una licencia MIT si no se indica lo contrario.
+
 ----------
