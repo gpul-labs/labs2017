@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "start": "start-storybook -p 9001 -c ./storybook",
+    "lint": "eslint ./src"
+  },
+  "devDependencies": {
+    "@kadira/storybook": "^2.35.3",
+    "babel-eslint": "^7.2.3",
+    "eslint": "^3.19.0",
+    "eslint-config-prettier": "^1.7.0",
+    "eslint-config-trabe": "^0.0.5",
+    "prettier": "^1.2.2",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "trabe",
+      "prettier",
+      "prettier/react"
+    ]
+  }
+}

@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Post-introduction to React</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="trabe-slide-pack.css">
+  </head>
+  <body>
+
+<textarea data-slide-pack>
+
+-- trabe
+
+# Post-introduction
+# to React
+
+<span class="hide">Our affaire with React, 2 years later</span>
+
+-- trabe
+
+# Post-introduction
+# to React
+
+<span>Our affaire with React, 2 years later</span>
+
+-- trabe who
+
+<div class="trabe-people">
+<h1>David Barral</h1>
+<small>david@trabe.io</small>
+<br/>
+<small>@davidbarral</small>
+
+<br/>
+<br/>
+<br/>
+
+<h1>Cecilia García</h1>
+<small>ceci@trabe.io</small>
+<br/>
+<small>@cecig2202</small>
+</div>
+
+<div class="trabe-info">
+  ![](assets/trabe-logo.png)
+  <br/>
+  <small>https://trabe.io</small>
+  <br/>
+  <small>@trabe</small>
+</div>
+
+-- full-image
+
+## Sorry about the syntax highlighting
+
+![](assets/fail.gif)
+
+-- trabe-green
+
+# React intro recap
+
+--
+
+
+# UI Library
+
+## UI = f(state)
+
+-- full-inline-image
+
+# Virtual DOM
+
+<img src="assets/virtual-dom.png" style="width: 90vw" />
+
+<div class="kudo">
+[Building Isomorphic Web Applications by Donald Whyte](http://slidedeck.io/DonaldWhyte/isomorphic-react-workshop)
+</div>
+
+-- code
+
+# JSX
+
+```javascript
+import React from "react";
+import { render } from "react-dom";
+
+const HelloWorld = () =>
+  <p>Hello world!</p>;
+
+render(
+  <HelloWorld/>,
+  document.getElementById("app")
+);
+```
+-- code
+
+# JSX as functions
+
+```javascript
+import React from "react";
+import { render } from "react-dom";
+
+const HelloWorld = () =>
+  React.DOM.p(null, "Hello world!");
+
+render(
+  React.createElement(HelloWorld),
+  document.getElementById("app")
+);
+```
+
+-- code
+
+# Stateless components
+
+```javascript
+const Layout = ({ title, children }) => (
+  <div>
+    <h1>{title}</h1>
+    {children}
+  </div>
+);
+
+<Layout title="MyApp">
+  <p>Ola ke ase</p>
+</Layout>
+
+<div>
+  <h1>MyApp</h1>
+  <p>Ola ke ase</p>
+</div>
+```
+
+-- code small
+
+# Stateful components
+
+```javascript
+class Counter extends Component {
+  state = { counter: 0 }
+
+  handleClick = () => {
+    this.setState({
+      counter: this.state.counter + 1,
+    });
+  }
+
+  render() {
+    return (
+      <p onClick={this.handleClick}>
+        {this.state.counter} clicks
+      </p>
+    );
+  }
+}
+
+<Layout title="MyApp">
+  <Counter />
+</Layout>
+```
+
+-- lifecycle
+
+# Lifecycle
+
+<ul>
+  <li>initialState / props / defaultProps</li>
+  <li>componentWillMount</li>
+  <li>componentWillReceiveProps</li>
+  <li>shouldComponentUpdate</li>
+  <li>componentWillUpdate</li>
+  <li>render</li>
+  <li>componentDidUpdate</li>
+  <li>componentDidMount</li>
+  <li>componentWillUnmount</li>
+</ul>
+
+-- lifecycle
+
+# Mounting
+
+<ul>
+  <li class="act">initialState / props / defaultProps</li>
+  <li class="act">componentWillMount</li>
+  <li class="dim">componentWillReceiveProps</li>
+  <li class="dim">shouldComponentUpdate</li>
+  <li class="dim">componentWillUpdate</li>
+  <li class="act">render</li>
+  <li class="dim">componentDidUpdate</li>
+  <li class="act">componentDidMount</li>
+  <li class="dim">componentWillUnmount</li>
+</ul>
+
+-- lifecycle
+
+# Updating state
+
+<ul>
+  <li class="dim">initialState / props / defaultProps</li>
+  <li class="dim">componentWillMount</li>
+  <li class="dim">componentWillReceiveProps</li>
+  <li class="act">shouldComponentUpdate</li>
+  <li class="act">componentWillUpdate</li>
+  <li class="act">render</li>
+  <li class="act">componentDidUpdate</li>
+  <li class="dim">componentDidMount</li>
+  <li class="dim">componentWillUnmount</li>
+</ul>
+
+-- lifecycle
+
+# Updating props
+
+<ul>
+  <li class="dim">initialState / props / defaultProps</li>
+  <li class="dim">componentWillMount</li>
+  <li class="act">componentWillReceiveProps</li>
+  <li class="act">shouldComponentUpdate</li>
+  <li class="act">componentWillUpdate</li>
+  <li class="act">render</li>
+  <li class="act">componentDidUpdate</li>
+  <li class="dim">componentDidMount</li>
+  <li class="dim">componentWillUnmount</li>
+</ul>
+
+-- lifecycle
+
+# Unmounting
+
+<ul>
+  <li class="dim">initialState / props / defaultProps</li>
+  <li class="dim">componentWillMount</li>
+  <li class="dim">componentWillReceiveProps</li>
+  <li class="dim">shouldComponentUpdate</li>
+  <li class="dim">componentWillUpdate</li>
+  <li class="dim">render</li>
+  <li class="dim">componentDidUpdate</li>
+  <li class="dim">componentDidMount</li>
+  <li class="act">componentWillUnmount</li>
+</ul>
+
+
+-- code small
+
+# Lifecycle
+
+```javascript
+class Data extends Component {
+
+  state = { loading: true }
+
+  componentDidMount() {
+    fetch("/data").then(() => {
+      this.setState({ loading: false });
+    });
+  }
+
+  render() {
+    return this.state.loading
+      ? <p>Loading...</p>
+      : <p>Loaded</p>;
+  }
+}
+```
+
+-- full-image
+
+## OK, so... now what?
+
+ ![](assets/lost-kid.gif)
+
+ <!-- Contexto. Trabe usa React. Y lo usa en proyectos de verdad y se come los marrones que toquen.-->
+
+-- problem
+
+# We'll talk about
+# real problems
+
+--
+
+# And see how to solve
+# them with React
+
+-- gotchas
+
+# Gotchas
+
+### Be aware that some of this stuff
+### must be handled with care
+
+-- full-image
+
+## From "easy peasy"
+## to "total mind fuck!"
+
+![](assets/mind-blown.gif)
+
+-- full-image
+
+## Example code
+
+[https://github.com/trabe-teaching/post-intro-react-examples](https://github.com/trabe-teaching/post-intro-react-examples)
+
+![A panda coded this](assets/panda.gif)
+
+-- tech
+
+<img src="assets/storybook.png" width="400px" />
+
+<small>https://storybooks.js.org</small>
+
+<br />
+<img src="assets/babel.jpg" width="200px" />
+
+<small>https://babeljs.io/docs/plugins/preset-es2017</small>
+
+
+-- problem
+
+# Fine control the
+# render cycle
+
+-- code small
+
+# Optimize render
+
+```javascript
+const List = ({ items }) => (
+  <ul>
+    {items.map(item => <Item item={item} />)}
+  </ul>
+);
+
+class Item extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.item !== this.props.item;
+  }
+
+  render() {
+    return <li>{this.props.item}</li>;
+  }
+}
+
+```
+
+-- code small
+
+# Change component state on props change
+
+```javascript
+class Counter extends Component {
+  state = {
+    counter: this.props.initial,
+  }
+
+  handleClick = () => { /* state.counter += 1 */ }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.initial !== this.props.initial) {
+      this.setState({
+        counter: nextProps.initial,
+      });
+    }
+  }
+
+  render() { /* ... */ }
+}
+```
+
+-- gotchas
+
+* Check for relevant properties
+* Identity check vs deep equality
+* Inmutability FTW!
+
+-- code small
+
+# Handle state batching
+
+```javascript
+class Counter extends Component {
+
+  // handleClick = () => {
+  //   this.setState({
+  //     counter: this.state.counter + 1,
+  //   });
+  // }
+
+  handleClick = () => {
+    this.setState((prevState, props) => ({
+      counter: prevState.counter + 1,
+    }));
+  }
+
+  render() { /* ... */ }
+}
+```
+
+-- code small
+
+# Handle state batching
+
+```javascript
+class Counter extends Component {
+
+  // handleClick = () => {
+  //   this.setState({
+  //     counter: this.state.counter + 1,
+  //   },
+  //   () => {
+  //     console.log("New counter", this.counter);
+  //   });
+
+  handleClick = () => {
+    this.setState((prevState, props) => ({
+      counter: prevState.counter + 1,
+    }),
+    () => {
+      console.log("New counter", this.state.counter);
+    });
+  }
+
+  render() { /* ... */ }
+}
+```
+
+-- code small
+
+# Handle state batching
+
+```javascript
+class Counter extends Component {
+
+  handleClick = () => {
+    this.setState((prevState, props) => ({
+      counter: prevState.counter + 1,
+    }));
+  }
+
+  componentDidUpdate(prevPros, prevState) {
+    console.log("New counter", this.state.counter);
+  }
+
+  render() { /* ... */ }
+}
+```
+
+-- gotchas
+
+* setState batching
+* setState and lifecycle
+* componentDidUpdate handles both props and state change
+
+-- full-image
+
+## It's going to be ok
+
+![](assets/gonna-be-ok.gif)
+
+
+-- problem
+
+# Forms
+
+-- code very-small
+
+# Controlled components
+
+```javascript
+class ControlledForm extends Component {
+  state = { value: 5 };
+
+  handleChange = event =>
+   this.setState({ value: event.target.value });
+
+  handleSubmit = event => {
+    event.preventDefault();
+    alert(this.state.value);
+  }
+
+  render() {
+    return (
+      <form>
+        <input
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+        />
+        <button onClick={this.handleSubmit}>Submit</button>
+      </form>
+    );
+  }
+}
+```
+
+-- code small
+
+# Uncontrolled components & refs API
+
+```javascript
+const UncontrolledForm = () => {
+  let input;
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    alert(input.value);
+  }
+
+  return (
+    <form>
+      <input
+        ref={i => input = i}
+        type="text"
+        defaultValue="5"
+      />
+      <button onClick={handleSubmit}>Submit!</button>
+    </form>
+  );
+}
+```
+
+--
+
+# When to use refs
+
+* Forms for performance reasons
+* DOM manipulation, e.g. animations
+* Access custom componentes API  
+* Non-React stuff integrations
+
+<small>more on this later, stay tuned!</small>
+
+-- gotchas
+
+* Not the React way  
+  <small>(imperative vs declarative)</small>
+* Ref to node: React vs DOM
+* Wrapping: ref delegation
+
+-- code small
+
+# Broken ref
+
+```javascript
+class WrappedComponent extends Component {
+  apiMethod() { /* ... */ }
+}
+
+const Wrapper = () => <WrappedComponent />;
+
+let component;
+<Wrapper ref={r => component = r} />;
+component.apiMethod(); // broken ref
+```
+
+-- code small
+# Explicit ref delegation
+
+```javascript
+class WrappedComponent extends Component {
+  apiMethod() { /* ... */ }
+}
+
+const Wrapper = ({ componentRef }) =>
+  <WrappedComponent ref={componentRef} />;
+
+let component;
+<Wrapper componentRef={r => component = r} />;
+component.apiMethod();
+```
+
+
+-- code small
+
+# Transparent ref delegation
+
+```javascript
+class WrappedComponent extends Component {
+  apiMethod() { /* ... */ }
+}
+
+class Wrapper extends Component {
+  apiMethod() {
+    this.component.apiMethod();
+  }
+
+  render() {
+    return (
+      <WrappedComponent ref={r => this.component = r } />
+    );
+  }
+}
+
+let wrapper;
+<Wrapper ref={r => wrapper = r} />;
+wrapper.apiMethod();
+```
+
+-- full-image
+
+## It really is
+## going to be ok
+
+![](assets/really-gonna-be-ok.gif)
+
+
+-- problem
+
+# Passing props
+# to deep nested
+# components
+
+-- code small
+
+# Flowing props
+
+```javascript
+const T = ({ locale, key }) => `${key}.${locale}`;
+
+const Content = ({ locale }) => (
+  <h1>
+    <T locale={locale} key="app.title"/>
+  </h1>
+);
+
+const App = ({ locale }) =>
+  <Content locale={locale} />;
+
+<App locale="es" />
+```
+
+-- code small
+
+# Context API
+
+```javascript
+const T = ({ key }, { locale }) => `${key}.${locale}`;
+T.contextTypes = { locale: PropTypes.string }
+
+const Content = () => <h1><T key="app.title"/></h1>;
+
+class App extends Component {
+  static childContextTypes = {
+    locale: PropTypes.string,
+  };
+
+  getChildContext() {
+    return { locale: this.props.locale };
+  }
+
+  render() {
+    return <Content />;
+  }
+);
+
+<App locale="es" />
+```
+
+
+-- gotchas
+
+* Experimental API
+* Extract as a reusable concern to<br/>minimize deprecation impact
+
+
+-- problem
+
+# Refactor common concerns
+
+--
+
+# HOC
+
+## High Order Component
+## f(Component) => Component'
+
+-- code small
+
+# HOC recipe
+
+```javascript
+const hoc = configuration => WrappedComponent =>
+  props => {
+    const enhacedProps = {
+      ...process(configuration, props),
+      ...props,
+    };
+
+    return (
+      <WrappedComponent {...enhacedProps} />
+    );
+  };
+
+const EnhacedComponent = hoc(config)(MyComponent);
+
+<EnhacedComponent prop1="1" prop2="2" />
+```
+
+-- code small
+
+# HOC recipe
+
+```javascript
+const hoc = configuration => WrappedComponent =>
+  const Wrapper extends Component {
+    componentWillReceiveProps() {
+      // Do some trick
+    }
+
+    render() {
+      <WrappedComponent {...enhacedProps} />;
+    }
+  };
+
+  return Wrapper;
+};
+
+const EnhacedComponent = hoc(config)(MyComponent);
+
+<EnhacedComponent prop1="1" prop2="2" />
+```
+
+-- code small
+
+# Locale HOC
+
+```javascript
+const withLocale = WrappedComponent => {
+  const Wrapper = (props, { locale }) =>
+    <WrappedComponent locale={locale} {...props} />;
+
+  Wrapper.contextTypes = { locale: PropTypes.string }
+  Wrapper.displayName =
+   `withLocale(${WrappedComponent.displayName})`;
+
+  return Wrapper;
+};
+
+
+let T = ({ key, locale }) => `${key}.${locale}`;
+T = withLocale(T);
+
+```
+
+-- code small
+
+# Redux connect
+
+```javascript
+import { connect } from "react-redux";
+
+const Counter = ({ count, onClick }) =>
+  <p onClick={onClick}>{counter} clicks</p>;
+
+const ConnectedCounter = connect(
+  state => ({
+    count: state.count,
+  })
+  dispatch => ({
+    onClick: () => dispatch(incrementCount()),
+  })
+)(Counter)
+
+<ConnectedCounter />
+
+```
+## World's most famous HOC
+
+
+--
+
+# Recompose
+
+* A React utility belt for function components and higher-order components
+
+https://github.com/acdlite/recompose
+
+-- two-columns
+
+* compose
+* withState
+* lifecycle
+* withProps
+* mapProps
+* branch
+* withContext
+* wrapDisplayName
+* shouldUpdate
+* pure
+* onlyUpdateForKeys
+* ...
+
+-- code small
+
+# Recompose Counter
+
+```javascript
+const Counter = ({ counter, onClick }) => (
+  <p onClick={onClick}>
+    {counter} clicks
+  </p>
+);
+
+compose(
+  withState("counter", "setCounter", 0),
+  withHandlers({
+    onClick: ({ setCounter }) => event => {
+      setCounter(n => n + 1);
+    },
+  })
+)(Counter);
+```
+
+-- code small
+
+# Locale HOC with recompose
+
+```javascript
+const withLocale = WrappedComponent => {
+
+  const displayName =
+    wrapDisplayName(WrappedComponent, "withLocale");
+
+  return compose(
+    getContext({ locale: PropTypes.string }),
+    setDisplayName(displayName),
+  )(WrappedComponent);
+);
+
+let T = ({ key, locale }) => `${key}.${locale}`;
+
+T = withLocale(T);
+
+```
+
+-- problem
+
+# Detect context changes
+
+-- full-image
+
+## You can't...
+
+![](assets/epic-fail.gif)
+
+-- code very-small
+
+# Subscribe to changes (1)
+
+```javascript
+class LocaleProvider extends Component {
+
+  static childContextTypes = {
+    locale: PropTypes.string,
+    subscribe: PropTypes.func,
+  };
+
+  state = {
+    locale: this.props.locale,
+  }
+
+  componentWillReceiveProps({ locale }) {
+    this.setState({ locale });
+  }
+
+  componentDidUpdate() {
+    (this.listeners || []).forEach(
+      listener => listener(this.state.locale)
+    );
+  }
+
+```
+
+-- code very-small
+
+# Subscribe to changes (2)
+
+``` javascript
+  getChildContext() {
+    return {
+      locale: this.state.locale,
+      subscribe: listener => {
+        this.listeners = [...(this.listeners || []), listener];
+        return () => {
+          this.listeners =
+            this.listeners.filter(li => li !== listener);
+        }
+      }
+    };
+  }
+
+  render() {
+    return Children.only(this.props.children);
+  }
+}
+```
+
+-- code very-small
+
+# Subscribe to changes (3)
+
+```javascript
+const withLocale = WrappedComponent => {
+  class Wrapper extends Component {
+    state = { locale: this.context.locale }
+
+    componentDidMount() {
+      this.unsubscribe = this.context.subscribe(locale => {
+        this.setState({ locale });
+      });
+    }
+
+    componeWillUnmount() { this.unsubscribe(); }
+
+    render() {
+      return <WrappedComponent
+         locale={this.state.locale} {...this.props} />;
+    }
+  };
+
+  Wrapper.contextTypes = LocaleProvider.childContextTypes;
+  Wrapper.displayName =
+   `withLocale(${WrappedComponent.displayName})`;
+
+  return Wrapper;
+};
+```
+
+--
+
+# Challenge!
+
+## Code your own Redux
+
+<br/>
+
+* Store - subscribe to changes
+* Provider - Context
+* connect - HOC
+
+-- full-image
+
+## Please, believe us!
+## It's going to be ok
+
+![](assets/bellieve-gonna-be-ok.gif);
+
+-- problem
+
+# Pass dependencies
+# to children
+
+-- code very-small
+
+# React.Children & React.cloneElement
+
+```javascript
+import React, { Children } from "react";
+
+class WithTheme extends Component {
+  // ...
+
+  render() {
+    const themeStyle = {
+      color: this.state.theme.fgColor,
+      background: this.state.theme.bgColor,
+    };
+
+    const themifiedChildren = Children.map(this.props.children,
+      child => React.cloneElement(child, { themeStyle }));
+
+    return <div>{themifiedChildren}</div>;
+  }
+}
+
+<WithTheme theme="inverse">
+  <Component1 />
+  <Component2 />
+</WithTheme>
+```
+
+-- gotchas
+
+* Only direct children  
+  <small>overcome with nasty deep search with refs</small>
+* Use context instead, or use ...
+
+-- code very-small
+
+# Children as a function
+
+```javascript
+class WithTheme extends Component {
+  // ...
+
+  render() {
+    const themeStyle = {
+      color: this.state.theme.fgColor,
+      background: this.state.theme.bgColor,
+    };
+
+    return (
+      <div>
+        {this.props.children(themeStyle)}
+      </div>
+    );
+  }
+}
+
+<WithTheme theme="inverse">
+  {themeStyle => (
+    <Component1 style={themeStyle}>
+      <Component2 style={themeStyle} />
+    </Component1>
+  )}
+</WithTheme>
+```
+
+--
+
+# React.Children API
+
+* map
+* forEach
+* count
+* only
+* toArray
+
+-- code
+
+# Rearrange children under the hood
+
+```javascript
+<Popup>
+  <Header>
+    The header
+  </Header>
+  <Content>
+    The content
+  </Content>
+</Popup>
+```
+
+-- gotchas
+
+## So much magic wowness
+
+-- code
+
+# Prefer the React way
+
+```
+const header = (
+  <Header>
+    The header
+  </Header>
+);
+
+const content = (
+  <Content>
+    The content
+  </Content>
+);
+
+<Popup header={header} content={content} />
+```
+
+-- problem
+
+# Integrate
+# non react stuff
+
+-- code small
+
+# Integrate DOM manipulation
+
+```javascript
+class Graph extends Component {
+  shouldComponentUpdate() { return false; }
+
+  componentDidMount() {
+    // D3 Magic!
+    const graph = d3.select(this.container)
+      .data(this.props.data).call(pieChart);
+  }
+
+  componentWillUnmount() {
+    d3.select(this.container).remove();
+  }
+
+  render() {
+    return <div ref={d => this.container = d } />;
+  }
+}
+
+```
+
+## jQuery, D3...
+
+-- full-image
+
+## Finally It's gonna be ok.
+
+![](assets/finally-gonna-be-ok.gif)
+
+-- problem
+
+# Managing state
+
+--
+
+<img src="assets/redux.png" width="400px" />
+
+http://redux.js.org/
+
+
+<img src="assets/mobx.png" width="120px" />
+
+https://mobx.js.org/
+
+-- problem
+
+# Testing components
+
+--
+
+<img src="assets/jest.png" width="200px" />
+
+https://facebook.github.io/jest/
+
+## Enzyme
+
+http://airbnb.io/enzyme/
+
+-- code small
+
+# Snapshot testing
+
+```javascript
+import React from "react";
+import { render } from "enzyme";
+import Icon from "components/icon";
+
+describe("<Icon/>", () => {
+  it("renders", () => {
+    const wrapper = render(<Icon name="chevron-right" />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});
+```
+
+-- trabe-green
+
+# Parting notes
+
+--
+
+# Use but not abuse
+
+* Prefer stateless components
+* Fully embrace Redux to make some of this technics irrelevant
+* Beware of experimetal APIs
+* Stick to the React way
+
+--
+
+# Update your React
+
+## React 15.5
+### Deprecation madness
+## React 16 (Fiber)
+### Bye bye wrappers.
+
+-- trabe
+
+# Questions?
+
+-- full-image
+
+## See ya!
+
+![](assets/bye.gif)
+
+
+</textarea>
+    <!-- SlidePack markdown compilation & UI goodies -->
+    <script src="slide-pack.js"></script>
+  </body>
+</html>
