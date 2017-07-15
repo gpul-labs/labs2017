@@ -1,0 +1,505 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JS, React y otros amigos del frontend</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css" />
+
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.min.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="snow" class="primary-green">
+					<h4>JS, React y otros amigos del frontend</h4>
+					<small><span>Pablo Castro - @castrinho18</span></small>
+					<p style="margin-bottom: -10%">
+						<img src="img/tech/javascript.png" width="10%"/>
+						<img src="img/tech/reactjs.png" width="10%"/>
+					</p>
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<p>castrinho8.github.io/intro_js_react</p>
+	        <small>
+          	<p>Creative Commons<em> BY-SA</em></p>
+	          <p>Basada en la <a href="https://trabe-teaching.github.io/es6-babel-y-reactjs/">charla</a> de los chicos de
+		          <span>Trabe</span> en los <em>Labs 2016</em>
+						</p>
+					</small>
+				</section>
+
+				<section data-background="white" class="primary-green">
+	         <img src="img/pablo_castro.jpeg" width="20%" height="30%">
+	         <h4><span>Pablo Castro Valiño</span></h4>
+	         <h4>
+	            <em>@castrinho18</em>
+	         </h4>
+	         <h4>Frontend developer</h4>
+	      </section>
+
+				<section data-background="white">
+	        <div style="margin-top: -100px;">
+	          <p>
+	            <img src="img/logos/logo_gpul.svg" width="30%"/>
+	            <img src="img/logos/gdg.png" width="30%"/>
+	            <img src="img/logos/logo_vacmatch.png" width="30%"/>
+	          </p>
+	          <p>
+	            <img src="img/logos/imatia.png" width="30%"/>
+	            <img src="img/logos/mobgen.png" width="30%"/>
+	          </p>
+	        </div>
+	      </section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<h3>Web tradicional</h3>
+					<p><span>HTML para aquí y para allá</span></p>
+					<small><a href="http://edition.cnn.com/US/OJ/">Ejemplo: O.J Simpson trial</a></small>
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<p><span>Web lenta</span></p>
+					<p><span>Mucho trabajo al servidor</span></p>
+					<p><span>Datos solo accesibles por web</span></p>
+					<p><span>...</span></p>
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<h3>Single Page Applications</h3>
+					<p><span>Javascript para gobernarlos a todos</span></p>
+					<small><a href="https://trello.com/">Ejemplo: Trello</a></small>
+				</section>
+
+				<section data-background="img/diagrams/rest_architecture.svg" data-background-size="80%" class="secondary-green">
+				</section>
+
+				<section data-background="img/gif/homer_chair.gif" data-background-size="100%">
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<h4>ES5 -> ES6  = ES2015</h4>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Variables y constantes</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+const mom = 'Marge';
+mom = 'Magie'; // Mal!
+
+let dad = 'Bart';
+dad = 'Homer';
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Objects y lists</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+const mom = {
+  name: 'Marge',
+  years: 45,
+};
+
+const family = [];
+family.push(mom)
+/* family
+[
+  mom: {
+    name: 'Marge',
+    years: 45,
+  },
+]
+*/
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>ES5 - Function scope</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+if (true) {
+  var dad = 'Homer';
+}
+console.log(dad); // 'Homer'
+
+// ES5 - function scope
+function () {
+  var dad = 'Homer';
+}
+console.log(dad); // Error not defined
+
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>ES6 - Block scope</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES6
+if (true) {
+  let dad = 'Homer';
+}
+
+console.log(dad); // undefined
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Functions</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+const double = function (x) {
+  return 2 * x;
+}
+
+// ES6
+const double = (x) => {
+  // ... más de 1 sentencia
+  const y = 2 * x;
+  return y;
+}
+
+// ES6
+const double = (x) => 2 * x;
+// Si solo hay una sentencia, hace return por defecto
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>ES5 - Functions</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+var dancer = {
+  name: 'Disco Stu',
+  saySomething: function() {
+    return function(baby) {
+      return this.name + ' llega antes que tu, ' + baby + '!';
+    }
+  }
+}
+var talk = dancer.saySomething();
+
+talk('nena'); // ' llega antes que tu, nena!'
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>ES5 - Functions (bind)</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+var dancer = {
+  name: 'Disco Stu',
+  saySomething: function() {
+    return function(baby) {
+      return this.name + ' llega antes que tu, ' + baby + '!';
+    }.bind(this); // Seteamos el valor de 'this'
+  }
+}
+var talk = dancer.saySomething();
+
+talk('nena'); // 'Disco Stu llega antes que tu, nena!'
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>ES6 - Arrow functions</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+var dancer = {
+  name: 'Disco Stu',
+  saySomething: function() {
+    return (baby) => this.name + ' llega antes que tu, ' + baby + '!';
+  }
+}
+var talk = dancer.saySomething();
+
+talk('nena'); // 'Disco Stu llega antes que tu, nena!'
+					</code></pre>
+				</section>
+
+				<section data-background="img/gif/wtf.gif">
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Ifs y operadores condicionales</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+//Ifs
+if () {
+  ...
+} else if {
+  ...
+}
+
+// Conditional operator
+const isBurnsEvil = true;
+const result = isBurnsEvil ? 'Yes, he stole the sun' : 'No, he is worst';
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Switches</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+
+const apu = 'Apu';
+
+const getWife = (person) => {
+  switch (person) {
+    case 'Homer':
+      return 'Marge';
+    case 'Apu':
+      return 'Manjula';
+    default:
+      return null;
+  }
+}
+
+getWife(apu) // 'Manjula'
+
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Bucles</h4>
+					<p>
+						<a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Bucles_e_iteraci%C3%B3n">
+							Bucles típicos en MDN
+						</a>
+					</p>
+					<p>
+						Para recorrer arrays, normalmente se usan funciones propias de los arrays como map, forEach...
+					</p>
+					<p>
+						<a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array">
+							Array MDN
+						</a>
+					</p>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Contenar strings - string templates</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// ES5
+var name = 'Apu';
+name = name + 'Nahasapeemapetilon';
+
+// ES6
+let name = 'Apu';
+name = `${name} Nahasapeemapetilon`;
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Destructing</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+
+const user = {
+  name: 'Ned Flanders',
+  age: 42,
+}
+
+// Forma menos chachi
+const name = user.name;
+const age = user.age;
+
+// Forma chachi
+const { name, age } = user;
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Clases</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+class Character {
+  constructor (name) {
+    this.name = name;
+  }
+}
+class SimpsonCharacter extends Character {
+  constructor (name, famousStatement) {
+    super(name)
+    this.famousStatement = famousStatement;
+  }
+  sayFamousStatement() {
+    console.log(`${this.name} say: ${this.famousStatement}`);
+  }
+}
+const bart = new SimpsonCharacter('Bart', 'Multiplícate por cero!')
+					</code></pre>
+				</section>
+
+				<section data-background="seagreen">
+					<h4>Módulos</h4>
+					<pre><code class="javascript" data-trim data-noescape>
+// Export
+export const CREATOR = 'Matt Groening';
+export const getSeason(chapterNumber) => Math.floor(chapterNumber / 24);
+
+export default const simpsonSerie = {
+  CREATOR: CREATOR,
+  getSeason: getSeason,
+};
+// Import
+import simpsonSerie from 'simpson-file';
+simpsonSerie.getSeason(254); // 10
+
+import { CREATOR, getSeason } from 'simpson-file';
+console.log(CREATOR) // 'Matt Groening'
+					</code></pre>
+				</section>
+
+				<section class="primary-green">
+					<h4><span>Más info de ES6</span></h4>
+					<small><a href="https://babeljs.io/learn-es2015/">https://babeljs.io/learn-es2015/</a></small>
+					<h4><span>La biblia de JS</span></h4>
+					<small><a href="https://developer.mozilla.org/es/docs/Web/JavaScript">https://developer.mozilla.org/es/docs/Web/JavaScript</a></small>
+					<h4><span>Soporte de navegadores</span></h4>
+					<small><a href="https://kangax.github.io/compat-table/es6/">https://kangax.github.io/compat-table/es6/</a></small>
+				</section>
+
+				<section data-background="img/tech/babel.png" data-background-size="50%">
+				</section>
+
+				<section>
+					<div style="color: darkslategray;">
+						<p><span>Babel es un compilador de JS</span></p>
+						<p><span>ES6 -> ES5</span></p>
+					<div>
+					<pre><code class="javascript" data-trim data-noescape>
+// .babelrc
+{
+  presets: ["react", "es2015"]
+}
+					</code></pre>
+				</section>
+
+				<section data-background="img/tech/webpack.png" data-background-size="60%">
+				</section>
+
+				<section>
+					<img src="img/tech/eslint.png"/ width="30%">
+					<pre><code class="json" data-trim data-noescape>
+// .eslintrc
+{
+  "extends": [
+    "airbnb", // https://github.com/airbnb/javascript
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": [
+    ...
+  ],
+}
+					</code></pre>
+				</section>
+
+				<section data-background="img/tech/reactjs2.png" data-background-size="40%">
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<ul>
+						<li>Librería UI</li>
+						<li>Basado en componentes</li>
+						<li>Virtual DOM</li>
+						<li>JSX: Parece HTML pero es JS</li>
+					</ul>
+				</section>
+
+				<section class="primary-green">
+					<h4>Show me the code!</h4>
+					<img src="img/gif/homer_corn_burn.gif" width="40%"/>
+				</section>
+
+				<section data-background="seagreen" class="secondary-green">
+					<h4><em>Componentes</em> reutilizables y anidables</h4>
+					<h4>Tienen <em>estado</em>...</h4>
+					<h4>Y se pasan datos en las <em>props</em></h4>
+					<h4>Cada componente tiene su <em>ciclo de vida</em></h4>
+				</section>
+
+				<section data-background="#a0cff1">
+					<img src="img/gif/homer_web.gif" style="width: 90%; border: none;">
+				</section>
+
+				<section class="primary-green">
+					<h3>Siguiente paso</h3>
+					<img src="img/tech/redux.png" width="30%"/>
+				</section>
+
+				<section id="thanks-slide" data-background="seagreen" class="secondary-green">
+					<h1>thanks!</h1>
+					<div class="author">
+						<p>
+							@castrinho18<span> | Pablo Castro</span>
+							<img class="img-circle" src="img/pablo_castro.jpeg">
+						</p>
+						<p><small>pcastro@gpul.org</small></p>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<footer class="authors">
+			<p>Pablo Castro Valiño <a class="tw_cuenta" href="http://twitter.com/castrinho18" target="_blank" style="color: #996">(@castrinho18)</a> </p>
+    </footer>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				slideNumber: true,
+				controls: false,
+				width: "70%",
+				height: "80%",
+				// Factor of the display size that should remain empty around the content
+				margin: 0.1,
+				// Bounds for smallest/largest possible scale to apply to content
+				minScale: 0.2,
+				maxScale: 1.5,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+
+		<script>
+		/*
+			window.addEventListener("mousedown", handleClick, false);
+			window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
+
+			function handleClick(e) {
+			   e.preventDefault();
+			   if(e.button === 0) Reveal.next();
+			   if(e.button === 2) Reveal.prev();
+			}
+		*/
+		</script>
+	</body>
+</html>
