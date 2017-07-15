@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elixir 101</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="trabe-slide-pack.css">
+    <style>
+     .intro {
+       font-size: 24px !important;
+       background: #4e2a8e !important;
+     }
+    </style>
+  </head>
+  <body>
+
+<textarea data-slide-pack>
+
+-- trabe intro
+
+# Elixir 101
+
+--
+
+![elixir](assets/elixir.png)
+
+--
+
+# Características
+
+1. Funcional
+1. Tipado dinámico
+1. Immutabilidad por defecto
+1. Compila a erlang y es interoperable
+1. Acceso a la plataforma OTP (ets, mnesia...)
+
+--
+
+# Erlang
+
+1. Lenguaje con casi 40 años de historia.
+1. Desarrollado para resolver problemas de telecomunicaciones
+1. Erlang está diseñado para resolver problemas de concurrencia
+1. Permite desarrollar sistemas distribuidos, tolerantes a fallos y con alta disponibilidad
+1. Permite actualizar aplicaciones en caliente
+1. Pese a ser antiguo, soluciona muchos problemas que se presentan actualmente
+
+-- code
+
+# Tipos
+
+```ruby
+iex> 1          # integer
+iex> 0x1F       # integer
+iex> 0b000101   # integer
+iex> 0o10       # integer
+iex> 1.0        # float
+iex> true       # boolean
+iex> :atom      # atom
+iex> "elixir"   # string
+iex> [1, 2, 3]  # list
+iex> {1, 2, 3}  # tuple
+```
+
+-- code
+
+# Operadores
+
+```ruby
+iex> :atom == :atom
+# true
+iex> :atom != :atom
+# false
+iex> 1 != 1
+# false
+iex> 1 + 1
+# 2
+iex> 5 * 5
+# 25
+iex> 10 / 2
+# 5.0
+iex> nil || ""
+# ""
+iex> true && 20
+# 20
+```
+
+-- code
+
+# Strings
+
+```ruby
+iex> "pingüino"
+# "pingüino"
+iex> "1 + 1 is #{1 + 1}"
+# "1 + 1 is 2"
+iex> is_binary("hey!")
+# true
+iex> byte_size("pingüino")
+# 9
+iex> String.length("pingüino")
+# 8
+iex> String.upcase("pingüino")
+# PINGÜINO
+iex> "hello " <> "world"
+# "hello world"
+```
+[//]: <> (por defecto en utf8)
+[//]: <> (permiten interpolación)
+[//]: <> (se representan como binarios)
+[//]: <> (las funciones del módulo String soportan caracteres unicode)
+
+-- code
+
+# Lambdas
+
+```ruby
+iex> add = fn (a, b) -> a + b end
+# #Function<12.118419387/2 in :erl_eval.expr/5>
+iex> add.(1, 1)
+# 2
+iex> is_function(add)
+# true
+iex> add = &(&1 + &2)
+# &:erlang.+/2
+iex> add.(1, 1)
+# 2
+iex> is_function(add)
+# true 
+iex> &String.upcase/2
+# &String.upcase/2
+```
+
+-- code
+
+# Listas
+
+```ruby
+iex> [1, 2, true, 3]
+# [1, 2, true, 3]
+iex> length([1, 2, 3])
+# 3
+iex> [1, 2, 3] ++ [4, 5, 6]
+# [1, 2, 3, 4, 5, 6]
+iex> [1, true, 2, false, 3, true] -- [true, false]
+# [1, 2, 3, true]
+iex> hd([1, 2, 3])
+# 1
+iex> tl([1, 2, 3])
+# [2, 3]
+iex> [1 | [2 | [3 | []]]]
+# [1, 2, 3]
+iex> [98, 99, 100]
+# ???
+```
+
+-- code
+
+# Tuplas
+
+```ruby
+iex> my_tuple = {:ok, "hello"}
+# {:ok, "hello"}
+iex> tuple_size(my_tuple)
+# 2
+iex> elem(my_tuple, 1)
+# "hello"
+```
+[//]: <> (las tuplas guardan los elementos en memoria contigua, así que el acceso por índice es rápido)
+
+--
+
+# Listas vs Tuplas
+
+* Las tuplas almacenan sus elementos en memoria de forma contigua
+* Las listas se almacenan como linked lists
+
+-- code
+
+# Pattern matching
+
+```ruby
+# El operador = es en realidad el operador match
+my_list = [1, 2, 3, 4, 5]
+# [1, 2, 3, 4, 5]
+[head|tail] = my_list
+# [1, 2, 3, 4, 5]
+head
+# 1
+tail
+# [2, 3, 4, 5]
+```
+
+-- code
+
+# Pattern matching
+
+
+```ruby
+# Se pueden ignorar campos utilizando `_`
+my_tuple = {"first", :second, {"innecesary", :stuff}}
+# {"first", :second, {"innecesary", :stuff}}
+{_, my_var, _} = my_tuple
+# {"first", :second, {"innecesary", :stuff}}
+my_var
+# :second
+```
+-- code
+
+# Estructuras de control: Case
+```ruby
+case File.read("hello.txt") do
+  {:ok, text} when is_binary(text) -> IO.puts text
+  _ -> IO.puts "Something bad happened :("
+end
+```
+-- code
+
+# Estructuras de control: Cond
+```ruby
+x = 3
+
+cond do
+  x == 1 -> IO.puts "it's a 1"
+  x == 2 -> IO.puts "it's a 2"
+  x == 3 -> IO.puts "it's a 3"
+  true -> IO.puts "what's that?"
+end
+```
+
+-- code
+
+# Estructuras de control: If
+
+```ruby
+x = true
+
+if x do
+  "it's true"
+else
+  "it's false"
+end
+```
+
+-- code
+
+# Keyword lists
+
+```ruby
+iex> list = [{:a, 1}, {:b, 2}]
+# [a: 1, b: 2]
+iex> list == [a: 1, b: 2]
+# true
+iex> Keyword.get(list, :a)
+# 1
+iex> [{:c, 3} | list]
+# [c: 3, a: 1, b: 2]
+```
+
+-- code
+
+# Keyword lists
+
+```ruby
+# Las keyword lists son el mecanismo por
+# defecto para pasar opciones a las funciones.
+
+# Cuando el último argumento de una función es una keyword list,
+# se pueden omitir los corchetes
+
+iex> my_function(1, false, a: "one option", b: "another option")
+iex> my_function(1, false, [a: "one option", b: "another option"])
+iex> my_function(1, false, [{:a, "one option"}, {:b, "another option"}])
+```
+
+-- code
+
+# Keyword lists
+
+```ruby
+# Los bloques `do` y `else` de las
+# construcciones de elixir se implementan como keyword lists
+
+iex> if false do
+  "this"
+else
+  "that"
+end
+# "that"
+
+iex> if(false, [do: "this", else: "that"])
+# "that"
+iex> if(false, do: "this", else: "that")
+# "that"
+iex> if false, do: "this", else: "that"
+# "that"
+```
+
+-- code
+
+# Mapas
+
+```ruby
+iex> my_map = %{:a => 1, 2 => :b}
+# %{2 => :b, :a => 1}
+iex> map[:a]
+# 1
+iex> map[2]
+# :b
+iex> map[:c]
+# nil
+```
+
+-- code
+
+# Mapas
+
+```ruby
+iex> user = %{name: "John", surname: "Doe"}
+# %{name: "John", surname: "Doe"}
+iex> user.name
+# "John"
+```
+
+-- code
+
+# Pattern matching con mapas
+
+```ruby
+iex> user = %{name: "John", surname: "Doe"}
+# %{name: "John", surname: "Doe"}
+iex> %{name: name} = user
+# %{name: "John", surname: "Doe"}
+iex> name
+# "John"
+```
+
+-- code
+
+# Actualizar mapas
+
+```ruby
+iex> user = %{name: "John", surname: "Doe"}
+# %{name: "John", surname: "Doe"}
+iex> user = %{user | name: "Jane"}
+# %{name: "Jane", surname: "Doe"}
+```
+
+--
+
+# Módulos
+
+1. Son colecciones de funciones
+1. Las funciones pueden ser públicas o privadas
+1. Las funciones pueden definirse "a trozos"
+1. Pueden definir un struct
+1. Pueden definir macros
+
+-- code
+
+# Módulos
+
+```ruby
+iex> defmodule Math do
+  def add(a, b), do: a + b
+end
+
+iex> Math.add(1, 1)
+# 2
+```
+
+-- code
+
+# Módulos
+
+```ruby
+iex> defmodule Math do
+  def add(a, b \\ 0), do: a + b
+
+  def sum([]), do: 0
+  def sum([head|tail]) do
+    head + sum(tail)
+  end
+
+  def zero?(0), do: true
+  def zero?(_), do: false
+end
+```
+
+--
+
+# Structs
+
+1. Permiten definir estructuras de datos
+1. Sólo se permite un struct por módulo
+1. Se implementan utilizando mapas, así que todas las funciones del módulo `Map` funcionan con structs
+
+-- code
+
+# Structs
+
+```ruby
+iex> defmodule User do
+  defstruct name: "John", age: 27
+end
+
+iex> user = %User{}
+# %User{age: 27, name: "John"}
+iex> user.name
+# "John"
+iex> user2 = %{user | name: "Jane"}
+# %User{age: 27, name: "Jane"}
+iex> user2.name
+# "Jane"
+iex> user = %{user | email: "john@doe.com"}
+# ** (KeyError) key :email not found in: %User{age: 27, name: "John"}
+```
+
+-- code
+
+# Macros
+
+```ruby
+defmodule MyMacros do
+  defmacro my_unless(expr, do: do_block) do
+    quote do
+      if (!unquote(expr)) do
+        unquote(do_block)
+      end
+    end
+  end
+end
+```
+
+-- code
+
+# Atributos de módulo
+
+```ruby
+iex> defmodule Circle, do: defstruct r: 1
+# {:module, Circle ...
+iex> defmodule Math do
+  @pi 3.14
+
+  def area(%Circle{r: r}), do: {:ok, @pi * :math.pow(r, 2)}
+  def area(_), do: {:error, "I don't know how to calculate the area of this"}
+end
+# {:module, Math ...
+iex> case Math.area(%Circle{r: 3}) do
+  {:ok, area} -> IO.puts("The area is #{area}")
+  {:error, reason} -> IO.puts("There was an error: #{reason}")
+end
+
+# The area is 28.26
+```
+
+-- code
+
+# Atributos de módulo
+
+
+```ruby
+iex> defmodule Math do
+  @moduledoc """
+  Collection of mathematic functions
+  """
+
+  @pi 3.14
+
+  @doc """
+  Calculates the area of a shape
+  """
+  def area(%Circle{r: r}), do: {:ok, @pi * :math.pow(r, 2)}
+  def area(_), do: {:error, "I don't know how to calculate the area of this"}
+end
+```
+
+--
+
+# Protocolos
+
+1. Permiten el polimorfismo de módulos
+1. Sirven para definir interfaces comunes entre módulos
+
+-- code
+
+# Protocolos
+
+```ruby
+iex> defprotocol Shape do
+  @doc "Calculates the area of a shape"
+  def area(shape)
+end
+
+iex> defmodule Circle, do: defstruct r: 1
+
+iex> defimpl Shape, for: Circle do
+  def area(%Circle{r: r}), do: :math.pi * :math.pow(r, 2)
+end
+
+iex> Shape.area(%Circle{r: 3})
+```
+
+-- code
+
+# Encadenando funciones
+
+```ruby
+iex> words = String.split("hello, world!", " ")
+# ["hello,", "world!"]
+iex> capitalized_words = Enum.map(words, &String.capitalize/1)
+# ["Hello,", "World!"]
+iex> result = Enum.join(capitalized_words, " ")
+# "Hello, World!"
+iex> Enum.join(Enum.map(String.split("hello, world!", " "), &String.capitalize/1), " ")
+# "Hello, World!"
+```
+
+-- code
+
+# Pipe operator
+
+```ruby
+iex> "hello, world!"
+|> String.split(" ")
+|> Enum.map(&String.capitalize/1)
+|> Enum.join(" ")
+# "Hello, World!"
+```
+
+-- code
+
+# Pipe operator
+
+```ruby
+iex> "hello, world!"
+|> String.split(" ")
+# String.split("hello, world!", " ")
+|> Enum.map(&String.capitalize/1)
+# Enum.map(["hello,", "world!"], &String.capitalize/1)
+|> Enum.join(" ")
+# Enum.join(["Hello,", "World!"], " ")
+```
+
+--
+
+# Enumerables y Streams
+
+1. Son protocolos para trabajar con colecciones de datos, como listas o mapas
+1. Las funciones de `Enumerable` son eager
+1. Las funciones de `Stream` son lazy
+
+-- code
+
+# Enumerables
+
+```ruby
+even? = &(rem(&1, 2) == 0)
+
+[1, 2, 3, 4, 5]
+|> Enum.filter(even?)
+|> Enum.map(fn x -> x * 2 end)
+|> Enum.reduce(fn(curr, acc) -> curr + acc end)
+# 12
+```
+
+-- code
+
+# Streams
+
+```ruby
+1..1_000_000 |> Stream.filter(even?)
+# #Stream<[enum: 1..1000000, funs: [...
+```
+
+-- code
+
+# Streams
+
+```ruby
+1..1_000_000
+|> Stream.filter(even?)
+|> Stream.map(fn x -> x * 2 end)
+|> Enum.reduce(fn(curr, acc) -> curr + acc end)
+# 500001000000
+```
+
+-- code
+
+# Streams
+
+```ruby
+# Stream puede trabajar con colecciones infinitas
+
+Stream.cycle([1, 2, 3]) |> Enum.take(10)
+# [1, 2, 3, 1, 2, 3, 1, 2, 3, 1]
+```
+
+-- code
+
+# Enum vs stream
+
+```ruby
+# Enum genera resultados intermedios,
+# Stream compone las funciones y retrasa
+# la ejecución todo lo posible.
+
+enum_way = fn ->
+  1..1_000_000
+  |> Enum.filter(even?)
+  |> Enum.map(fn x -> x * 2 end)
+  |> Enum.reduce(fn(curr, acc) -> curr + acc end)
+end
+
+stream_way = fn ->
+  1..1_000_000
+  |> Stream.filter(even?)
+  |> Stream.map(fn x -> x * 2 end)
+  |> Enum.reduce(fn(curr, acc) -> curr + acc end)
+end
+```
+
+-- code
+
+# Enum vs Stream
+
+```ruby
+measure = fn(name, fun) ->
+  {time, result} = :timer.tc(fun)
+  IO.puts "The #{name} took #{time / 1_000_000} seconds, the result was #{result}"
+end
+
+measure.("Enum way", enum_way)
+measure.("Stream way", stream_way)
+```
+
+--
+
+# Procesos
+
+1. Los procesos de erlang son diferentes a los procesos del sistema operativo
+1. Los procesos están aislados unos de otros
+1. Los procesos de erlang son muy ligeros y tienen un impacto muy pequeño en memoria
+1. Se pueden crear y destruir rápidamente
+
+-- code
+
+# Spawn
+
+```ruby
+iex> spawn fn ->
+  :timer.sleep(5000)
+  IO.puts "hey!!!!"
+end
+```
+
+-- code
+
+# Mensajes
+
+```ruby
+defmodule Ping do
+  def listen do
+    receive do
+      {:ping} -> IO.puts :pong
+    end
+    listen
+  end
+end
+iex> pid = spawn(Ping, :listen, [])
+# PID<0.108.0>
+
+iex> send pid, {"hi"}
+# {"hi"}
+iex> send pid, {:ping}
+# pong
+# {:ping}
+```
+
+-- code
+
+# Enlace de procesos
+
+```
+
+defmodule Bomb do
+  def explode, do: exit(:kabooooom)
+end
+
+iex> spawn(Bomb, :explode, [])
+#PID<0.66.0>
+iex> spawn_link(Bomb, :explode, [])
+# ** (EXIT from #PID<0.57.0>) :kaboom
+```
+
+-- code
+
+# Enlace de procesos 
+```ruby
+
+iex> Process.info(self())
+# [current_function: {Process, :info, 1}, initial_call: {:proc_lib, :init_p, 5},
+# status: :running, message_queue_len: 0, messages: [], links: [],
+# dictionary: ["$initial_call": {IEx.Evaluator, :init, 4},
+#  "$ancestors": [#PID<0.51.0>],
+#  iex_history: %IEx.History.State{queue: {[], []}, size: 0, start: 1}],
+# trap_exit: false, error_handler: :error_handler, priority: :normal,
+# group_leader: #PID<0.50.0>, total_heap_size: 2585, heap_size: 987,
+# stack_size: 50, reductions: 2191,
+# garbage_collection: [max_heap_size: %{error_logger: true, kill: true, size: 0},
+#  min_bin_vheap_size: 46422, min_heap_size: 233, fullsweep_after: 65535,
+#  minor_gcs: 1], suspending: []]
+
+```
+-- code
+
+# Tasks
+
+```ruby
+# Se basan en la funcion spawn, y ofrecen soporte de errores e introspección.
+iex> task = Task.async fn ->
+  :timer.sleep(5000)
+  IO.puts "hey!!!!"
+end
+
+iex> Task.await(task)
+```
+
+--
+
+# OTP
+
+OTP es un conjunto de librerías y componentes que ofrece la plataforma erlang. 
+
+--
+
+# Behaviours
+
+Los `Behaviours` son abstracciones que permiten diseñar componentes para nuestras aplicaciones, como supervisores, servidores, manejadores de eventos...
+
+--
+
+# GenServer
+
+Es la abstracción que permite definir servidores. Un servidor es un proceso que se puede utilizar para almacenar estado.
+
+-- code
+
+# Ejemplo con GenServer
+
+```ruby
+defmodule Stack do
+  use GenServer
+
+  # Callbacks
+
+  def init(state), do: {:ok, state}
+
+  def handle_call(:pop, _from, [h | t]) do
+    {:reply, h, t}
+  end
+
+  def handle_cast({:push, item}, state) do
+    {:noreply, [item | state]}
+  end
+end
+
+{:ok, pid} = GenServer.start_link(Stack, [:hello])
+GenServer.call(pid, :pop)
+GenServer.cast(pid, {:push, :world})
+GenServer.call(pid, :pop)
+```
+
+-- code
+
+# Cliente/Servidor
+
+```ruby
+defmodule Stack do
+  use GenServer
+
+  # Client
+
+  def start_link(state \\ []), do: GenServer.start_link(__MODULE__, state)
+
+  def push(pid, item), do: GenServer.cast(pid, {:push, item})
+
+  def pop(pid), do: GenServer.call(pid, :pop)
+
+  # Server
+                
+  def init(state), do: {:ok, state}
+
+  def handle_call(:pop, _from, []), do: {:reply, :empty, []}
+  def handle_call(:pop, _from, [h | t]), do: {:reply, h, t}
+
+  def handle_cast({:push, item}, state), do: {:noreply, [item | state]}
+end
+```
+
+--
+
+# Herramientas chulas
+
+1. Mix
+1. ExUnit
+1. Ecto
+1. Phoenix
+1. Nerves
+
+-- trabe
+
+# ¿Preguntas?
+                    
+</textarea>
+    <!-- SlidePack markdown compilation & UI goodies -->
+    <script src="slide-pack.js"></script>
+  </body>
+</html>
